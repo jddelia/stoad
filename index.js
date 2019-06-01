@@ -57,15 +57,18 @@ let arr = [
 
 function mutateArray(a) {
 
-  a.forEach(item => {
+  a.forEach((item, index) => {
+    if (item.guest_type !== 'guest') {
+      delete a[index];
+      return;
+    }
+
     if (item.guest_booking) {
       let { room_no, some_array } = item.guest_booking;
 
       let some_total = some_array.reduce((acc, current) => {
         return acc += current;
       }, 0);
-
-      console.log(some_total);
 
       delete item.guest_booking;
 
