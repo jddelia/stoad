@@ -61,10 +61,16 @@ function mutateArray(a) {
     if (item.guest_booking) {
       let { room_no, some_array } = item.guest_booking;
 
+      let some_total = some_array.reduce((acc, current) => {
+        return acc += current;
+      }, 0);
+
+      console.log(some_total);
+
       delete item.guest_booking;
 
       item['room_no'] = room_no;
-      item['some_array'] = some_array;
+      item['some_total'] = some_total;
     }
   });
 
