@@ -56,13 +56,24 @@ let arr = [
 ];
 
 function mutateArray(a) {
-
-  a.forEach((item, index) => {
-    if (item.guest_type !== 'guest') {
-      delete a[index];
-      return;
+  a.sort((a, b) => {
+    if (a.last_name === b.last_name) {
+      if (a.first_name > b.first_name) return 1;
+      else return -1;
+    } else {
+      if (a.last_name > b.last_name) return 1;
+      else return -1;
     }
+  });
 
+  for (let i = a.length - 1; i >= 0; i--) {
+    if (a[i].guest_type !== 'guest') {
+      console.log('test')
+      a.splice(i, 1);
+    }
+  }
+
+  a.forEach((item, index, arr) => {
     if (item.guest_booking) {
       let { room_no, some_array } = item.guest_booking;
 
@@ -77,15 +88,7 @@ function mutateArray(a) {
     }
   });
 
-  return a.sort((a, b) => {
-    if (a.last_name === b.last_name) {
-      if (a.first_name > b.first_name) return 1;
-      else return -1;
-    } else {
-      if (a.last_name > b.last_name) return 1;
-      else return -1;
-    }
-  });
+  return a;
 }
 
 $(document).ready(function() {
