@@ -77,7 +77,15 @@ function mutateArray(a) {
     }
   });
 
-  return a;
+  return a.sort((a, b) => {
+    if (a.last_name === b.last_name) {
+      if (a.first_name > b.first_name) return 1;
+      else return -1;
+    } else {
+      if (a.last_name > b.last_name) return 1;
+      else return -1;
+    }
+  });
 }
 
 $(document).ready(function() {
